@@ -13,7 +13,7 @@ data class FindWeatherResponse(
 data class WeatherResponse(
     val id: Int,
     val coord: CoordModel?,
-    val weather: WeatherModel?,
+    val weather: List<WeatherModel?>,
     @SerializedName("main")
     val temperature: TemperatureModel?,
     val wind: WindModel?,
@@ -48,7 +48,7 @@ data class WindModel(
 
 fun WeatherResponse.toDomainModel() = Weather(
     id = id,
-    temperature = (temperature?.temp ?: 0 - 273).toString(),
+    temperature = String.format("%.2f", temperature?.temp?.minus(273.0)),
     humidity = temperature?.humidity.toString(),
     windSpeed = wind?.speed.toString(),
     name = name

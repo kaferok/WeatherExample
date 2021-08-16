@@ -1,6 +1,6 @@
 package com.invatechs.weatherexample.di
 
-import com.invatechs.weatherexample.view.WeatherViewModel
+import com.invatechs.weatherexample.view.fragment.WeatherViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

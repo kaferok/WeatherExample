@@ -12,15 +12,15 @@ abstract class BaseViewModel<State : ViewState, Action : ViewAction>(
 ) : ViewModel() {
 
     private val _viewState: MutableStateFlow<State?> = MutableStateFlow(initState)
-    val viewState: StateFlow<State?> = _viewState
+    val viewState: StateFlow<State?> get() = _viewState
 
     private val _actionState: MutableStateFlow<Action?> = MutableStateFlow(null)
-    val actionState: StateFlow<Action?> = _actionState
+    val actionState: StateFlow<Action?> get() = _actionState
 
     fun reduceState(reducer: (oldState: State) -> State) {
         viewModelScope.launch {
             val oldState = viewState.value!!
-            _viewState.tryEmit(reducer(oldState))
+            _viewState.value = reducer(oldState)
         }
     }
 }

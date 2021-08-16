@@ -1,12 +1,11 @@
-package com.invatechs.weatherexample.view
+package com.invatechs.weatherexample.view.fragment
 
 import androidx.lifecycle.viewModelScope
 import com.invatechs.domain.interactors.WeatherInteractor
 import com.invatechs.domain.utils.Result
 import com.invatechs.weatherexample.view.base.BaseViewModel
-import com.invatechs.weatherexample.view.state.WeatherViewAction
-import com.invatechs.weatherexample.view.state.WeatherViewState
-import kotlinx.coroutines.flow.collect
+import com.invatechs.weatherexample.view.fragment.state.WeatherViewAction
+import com.invatechs.weatherexample.view.fragment.state.WeatherViewState
 import kotlinx.coroutines.launch
 
 private const val DEFAULT_REQUEST_PARAMETER = "London"
@@ -22,12 +21,12 @@ class WeatherViewModel(
     }
 
     fun onChangeCity(city: String?) {
-//        reduceState { oldState -> oldState.copy(city = city).reduceButtonState() }
+        reduceState { oldState -> oldState.copy(city = city).reduceButtonState() }
     }
 
     fun onSearchClick() {
         viewState.value?.city.let { value -> getCurrentWeather(value) }
-//        reduceState { oldState -> oldState.copy(isLoading = true) }
+        reduceState { oldState -> oldState.copy(isLoading = true) }
     }
 
     private fun getCurrentWeather(city: String?) {

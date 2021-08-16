@@ -1,4 +1,4 @@
-package com.invatechs.weatherexample.view.state
+package com.invatechs.weatherexample.view.fragment.state
 
 import com.invatechs.domain.models.Weather
 import com.invatechs.weatherexample.view.base.ViewState

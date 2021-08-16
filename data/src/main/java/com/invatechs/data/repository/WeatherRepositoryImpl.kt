@@ -16,14 +16,12 @@ class WeatherRepositoryImpl(
 ) : WeatherRepository {
 
     override suspend fun getCurrentWeather(city: String?): Result<Weather> {
-        with(Dispatchers.IO) {
-            val result = api.getWeather(city).bodyOrFailure()
-            return when (result) {
-                is Result.Failure -> Result.Failure(result.error)
-                is Result.Success -> Result.Success(
-                    result.value.list.map(WeatherResponse::toDomainModel).first()
-                )
-            }
+        val result = api.getWeather(city).bodyOrFailure()
+        return when (result) {
+            is Result.Failure -> Result.Failure(result.error)
+            is Result.Success -> Result.Success(
+                result.value.list.map(WeatherResponse::toDomainModel).first())
         }
     }
+
 }
