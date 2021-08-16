@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "SERVER_URL", '"https://community-open-weather-map.p.rapidapi.com"'
+            buildConfigField "String", "API_KEY", '"84e380148bmsh680d4d8dc9f1440p15e114jsnd8fad20194ba"'
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            buildConfigField "String", "SERVER_URL", '""'
+//            buildConfigField "String", "API_KEY", '""'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+def loggingInterceptor = '4.7.2'
+def gsonConverter = '2.9.0'
+def retrofit = '2.9.0'
+def coroutines = '1.4.1'
+def koin = '2.1.6'
+
+dependencies {
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+
+    // Koin
+    implementation "org.koin:koin-core:$koin"
+
+    // Network
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptor"
+    implementation "com.squareup.okhttp3:okhttp:4.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:$gsonConverter"
+
+    implementation project(':domain')
+}

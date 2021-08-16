@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">WeatherExample</string>
+
+    <string name="temp_symbol">℃</string>
+    <string name="humidity_value">Humidity: %s</string>
+    <string name="wind_value">Wind speed: %skm/h</string>
+    <string name="city">City</string>
+    <string name="search">Search</string>
+</resources>
